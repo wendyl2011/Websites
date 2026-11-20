@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#8f241d">
+    <meta name="description" content="A simple place for Cupertino High School students to report and find lost belongings.">
+    <title>Lost and Found · Cupertino High School</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header" id="top">
+      <a class="brand" href="#top" aria-label="Cupertino High School Lost and Found home">
+        <span class="brand-mark">CHS</span>
+        <span class="brand-name">Lost <span>&amp;</span> Found</span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#map">Campus map</a>
+        <a href="#items" data-view="found">Found items</a>
+        <a href="#items" data-view="lost">Lost reports</a>
+      </nav>
+      <button class="button button-primary header-report" type="button" data-report="found"><svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/><path d="m19 14 .9 2.6 2.6.9-2.6.9L19 21l-.9-2.6-2.6-.9 2.6-.9L19 14Z"/></svg>Report found</button>
+    </header>
+
+    <main>
+      <section class="hero page-width" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> Go Pioneers · 10100 Finch Ave, Cupertino</p>
+          <h1 id="hero-title">Lost and Found,<br><span>Cupertino High School</span></h1>
+          <p class="hero-description">Add a photo and item details. Pin it on the 3D campus map.<br>Help it find its way back to its owner.</p>
+          <div class="hero-actions">
+            <button class="button button-primary" type="button" data-report="found"><svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 11h14v10H5z"/><path d="M3 11 5 4h14l2 7M12 14v4m-2-2h4"/></svg>I found something <span aria-hidden="true">→</span></button>
+            <button class="button button-outline" type="button" data-report="lost"><svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5M8 10.5h5"/></svg>I lost something</button>
+          </div>
+          <div class="quick-stats" aria-label="Lost and found overview">
+            <div class="stat"><span class="stat-number" id="found-count">5</span><span class="stat-label">Waiting for owners</span></div>
+            <div class="stat"><span class="stat-number" id="lost-count">2</span><span class="stat-label">Students searching</span></div>
+            <div class="stat"><span class="stat-number">2</span><span class="stat-label">Pioneers reunited</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="map-section page-width" id="map" aria-labelledby="map-title">
+        <div class="section-heading">
+          <div><h2 id="map-title">3D Campus Map</h2></div>
+          <button class="map-filter" id="map-filter" type="button" hidden></button>
+        </div>
+        <div class="campus-map" aria-label="Interactive 3D map of Cupertino High School">
+          <div class="map-scale">
+            <div class="map-scene">
+              <div class="map-ground" aria-hidden="true"></div>
+              <div class="map-park park-west" aria-hidden="true"></div>
+              <div class="map-park park-center" aria-hidden="true"></div>
+              <div class="map-quad" aria-label="Cupertino High School quad with redwood grove seating and curved planters">
+                <span class="quad-title">THE QUAD</span>
+                <span class="quad-grove grove-one" aria-hidden="true"></span>
+                <span class="quad-grove grove-two" aria-hidden="true"></span>
+                <span class="quad-grove grove-three" aria-hidden="true"></span>
+                <span class="quad-seatwall" aria-hidden="true"></span>
+                <span class="quad-planter" aria-hidden="true"></span>
+              </div>
+              <div class="map-street street-south">FINCH AVE</div>
+              <div class="map-street street-north">TILSON AVE</div>
+              <div class="map-street street-west">STEVENS CREEK BLVD</div>
+              <div class="map-blocks" id="map-buildings">
+                <button class="map-building" type="button" data-location="6200s Building" aria-label="6200s Building">
+                  <span class="building-shadow" aria-hidden="true"></span><span class="building-front" aria-hidden="true"></span><span class="building-side" aria-hidden="true"></span>
+                  <span class="building-roof"><strong>6200</strong><i class="building-count"></i></span>
+                </button>
+                <button class="map-building" type="button" data-location="7200s Building" aria-label="7200s Building">
+                  <span class="building-shadow" aria-hidden="true"></span><span class="building-front" aria-hidden="true"></span><span class="building-side" aria-hidden="true"></span>
+                  <span class="building-roof"><strong>7200</strong><i class="building-count"></i></span>
+                </button>
+                <button class="map-building" type="button" data-location="500s Building" aria-label="500s Building">
+                  <span class="building-shadow" aria-hidden="true"></span><span class="building-front" aria-hidden="true"></span><span class="building-side" aria-hidden="true"></span>
+                  <span class="building-roof"><strong>500</strong><i class="building-count"></i></span>
+                </button>
+                <button class="map-building" type="button" data-location="900s Building" aria-label="900s Building">
+                  <span class="building-shadow" aria-hidden="true"></span><span class="building-front" aria-hidden="true"></span><span class="building-side" aria-hidden="true"></span>
+                  <span class="building-roof"><strong>900</strong><i class="building-count"></i></span>
+                </button>
+                <button class="map-building" type="button" data-location="400s Building" aria-label="400s Building">
+                  <span class="building-shadow" aria-hidden="true"></span><span class="building-front" aria-hidden="true"></span><span class="building-side" aria-hidden="true"></span>
+                  <span class="building-roof"><strong>400</strong><i class="building-count"></i></span>
+                </button>
+                <button class="map-building" type="button" data-location="300s Building" aria-label="300s Building">
+                  <span class="building-shadow" aria-hidden="true"></span><span class="building-front" aria-hidden="true"></span><span class="building-side" aria-hidden="true"></span>
+                  <span class="building-roof"><strong>300</strong><i class="building-count"></i></span>
+                </button>
+                <button class="map-building" type="button" data-location="200s Building" aria-label="200s Building">
+                  <span class="building-shadow" aria-hidden="true"></span><span class="building-front" aria-hidden="true"></span><span class="building-side" aria-hidden="true"></span>
+                  <span class="building-roof"><strong>200</strong><i class="building-count"></i></span>
+                </button>
+                <button class="map-building" type="button" data-location="100s Building" aria-label="100s Building">
+                  <span class="building-shadow" aria-hidden="true"></span><span class="building-front" aria-hidden="true"></span><span class="building-side" aria-hidden="true"></span>
+                  <span class="building-roof"><strong>100</strong><i class="building-count"></i></span>
+                </button>
+                <button class="map-building" type="button" data-location="700s Building" aria-label="700s Building">
+                  <span class="building-shadow" aria-hidden="true"></span><span class="building-front" aria-hidden="true"></span><span class="building-side" aria-hidden="true"></span>
+                  <span class="building-roof"><strong>700</strong><i class="building-count"></i></span>
+                </button>
+                <button class="map-building" type="button" data-location="800s Building" aria-label="800s Building">
+                  <span class="building-shadow" aria-hidden="true"></span><span class="building-front" aria-hidden="true"></span><span class="building-side" aria-hidden="true"></span>
+                  <span class="building-roof"><strong>800</strong><i class="building-count"></i></span>
+                </button>
+                <button class="map-building" type="button" data-location="600s Building" aria-label="600s Building">
+                  <span class="building-shadow" aria-hidden="true"></span><span class="building-front" aria-hidden="true"></span><span class="building-side" aria-hidden="true"></span>
+                  <span class="building-roof"><strong>600</strong><i class="building-count"></i></span>
+                </button>
+                <button class="map-building" type="button" data-location="Wagon Wheel" aria-label="Wagon Wheel">
+                  <span class="building-shadow" aria-hidden="true"></span><span class="building-front" aria-hidden="true"></span><span class="building-side" aria-hidden="true"></span>
+                  <span class="building-roof"><strong>Wagon Wheel</strong><i class="building-count"></i></span>
+                </button>
+                <button class="map-building" type="button" data-location="Dance" aria-label="Dance">
+                  <span class="building-shadow" aria-hidden="true"></span><span class="building-front" aria-hidden="true"></span><span class="building-side" aria-hidden="true"></span>
+                  <span class="building-roof"><strong>Dance</strong><i class="building-count"></i></span>
+                </button>
+                <button class="map-building" type="button" data-location="Girls' Lockers" aria-label="Girls' Lockers">
+                  <span class="building-shadow" aria-hidden="true"></span><span class="building-front" aria-hidden="true"></span><span class="building-side" aria-hidden="true"></span>
+                  <span class="building-roof"><strong>Lockers</strong><i class="building-count"></i></span>
+                </button>
+                <button class="map-building" type="button" data-location="Gym" aria-label="Gym">
+                  <span class="building-shadow" aria-hidden="true"></span><span class="building-front" aria-hidden="true"></span><span class="building-side" aria-hidden="true"></span>
+                  <span class="building-roof"><strong>Gym</strong><i class="building-count"></i></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="items-section page-width" id="items" aria-labelledby="items-title">
+        <div class="section-heading items-heading">
+          <div><p class="eyebrow">CHECK THE LIST</p><h2 id="items-title">Found around campus</h2></div>
+          <p>Recognize something? Check the details and claim it.</p>
+        </div>
+        <div class="item-controls">
+          <div class="tabs" role="tablist" aria-label="Item type">
+            <button class="tab active" id="tab-found" type="button" role="tab" aria-selected="true" data-tab="found">Found items <span id="found-tab-count">5</span></button>
+            <button class="tab" id="tab-lost" type="button" role="tab" aria-selected="false" data-tab="lost">Lost reports <span id="lost-tab-count">2</span></button>
+          </div>
+          <label class="search-box"><span class="sr-only">Search items</span><span aria-hidden="true">⌕</span><input id="search-input" type="search" placeholder="Search hoodie, TI-84, AirPods…" autocomplete="off"></label>
+          <label class="select-box"><span class="sr-only">Filter by category</span><select id="category-filter"><option value="all">All categories</option><option>Water Bottles</option><option>Electronics</option><option>Sports Gear</option><option>Apparel</option><option>Bags</option></select></label>
+        </div>
+        <div class="active-filter" id="active-filter" hidden></div>
+        <div class="items-grid" id="items-grid" aria-live="polite"></div>
+        <div class="empty-state" id="empty-state" hidden></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="page-width footer-content"><a class="brand footer-brand" href="#top"><span class="brand-mark">CHS</span><span class="brand-name">Cupertino High School · Pioneers Lost &amp; Found</span></a><p>Pick up claimed items at the 100s office.</p></div>
+    </footer>
+
+    <dialog class="app-dialog" id="report-dialog" aria-labelledby="report-dialog-title">
+      <form class="dialog-form" id="report-form">
+        <button class="dialog-close" type="button" aria-label="Close dialog">×</button>
+        <h2 id="report-dialog-title">Report a found item</h2>
+        <p class="dialog-intro">Upload a photo and add details to help the right person recognize the item.</p>
+        <input type="hidden" name="type" id="report-type" value="found">
+        <div class="photo-identification">
+          <label class="photo-picker" for="report-photo">
+            <img id="photo-preview" alt="Selected item preview" hidden>
+            <svg class="photo-picker-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3l1.5-2h7L17 7h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
+            <span id="photo-picker-text">Add photo</span>
+          </label>
+          <input class="sr-only" id="report-photo" name="photo" type="file" accept="image/*">
+          <div class="identification-copy">
+            <strong><span aria-hidden="true">✧</span> AI object identification</strong>
+            <p id="identification-status">Automatic identification is not connected in this demo. Add a photo and enter the item details below.</p>
+          </div>
+        </div>
+        <label>What is it?<input name="title" required maxlength="70" placeholder="e.g. Red CHS Pioneers hoodie"></label>
+        <div class="form-row">
+          <label>Category
+            <select name="category" required>
+              <option value="" selected disabled>Choose category</option>
+              <option>Water Bottles</option><option>Electronics</option><option>Sports Gear</option><option>Apparel</option><option>Bags</option><option>Other</option>
+            </select>
+          </label>
+          <label>Color<input name="color" maxlength="40" placeholder="e.g. Red / Gold"></label>
+        </div>
+        <label>Description<textarea name="description" rows="2" maxlength="240" placeholder="Stickers, initials, scratches — anything that helps prove ownership"></textarea></label>
+        <div class="form-row">
+          <label>Building
+            <select name="building" id="report-building" required>
+              <option value="" selected disabled>Choose building</option>
+              <option>100s Building</option><option>200s Building</option><option>300s Building</option><option>400s Building</option><option>500s Building</option><option>600s Building</option><option>700s Building</option><option>800s Building</option><option>900s Building</option><option>6200s Building</option><option>7200s Building</option><option>Wagon Wheel</option><option>Dance</option><option>Girls' Lockers</option><option>Gym</option>
+            </select>
+          </label>
+          <label>Floor
+            <select name="floor" id="report-floor" required disabled>
+              <option value="" selected disabled>Choose floor</option>
+            </select>
+          </label>
+        </div>
+        <label>Exact spot<input name="spot" required maxlength="100" placeholder="e.g. Room 317, under the back desk"></label>
+        <div class="form-row">
+          <label>Your name<input name="reporterName" maxlength="70" autocomplete="name"></label>
+          <label>Your email<input name="reporterEmail" type="email" maxlength="120" placeholder="name@student.fuhsd.org" autocomplete="email"></label>
+        </div>
+        <p class="privacy-note">Reports and contact details are stored only in this browser. Automatic photo identification is not available in this demo.</p>
+        <div class="dialog-actions">
+          <button class="dialog-cancel" type="button" data-close-dialog>Cancel</button>
+          <button class="button button-primary dialog-submit" type="submit">Post found item</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="app-dialog" id="claim-dialog" aria-labelledby="claim-dialog-title">
+      <form class="dialog-form" id="claim-form">
+        <button class="dialog-close" type="button" aria-label="Close dialog">×</button>
+        <p class="eyebrow">CLAIM A FOUND ITEM</p>
+        <h2 id="claim-dialog-title">Is this yours?</h2>
+        <p class="dialog-intro" id="claim-item-name"></p>
+        <label>What detail helps confirm it belongs to you?<textarea name="proof" required rows="3" maxlength="240" placeholder="Describe a mark, sticker, or something inside"></textarea></label>
+        <p class="privacy-note">Your description stays in this browser demo. For the real item, take it to the 100s office for staff to verify.</p>
+        <button class="button button-primary dialog-submit" type="submit">Save claim details</button>
+      </form>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
